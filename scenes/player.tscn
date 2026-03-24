@@ -1,20 +1,95 @@
-[gd_scene load_steps=3 format=3 uid="uid://dktrhq7mg4bgv"]
+[gd_scene load_steps=10 format=3 uid="uid://dktrhq7mg4bgv"]
 
 [ext_resource type="Texture2D" uid="uid://behmh51eajcl2" path="res://Sprites/Characters/character_0000.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bjpis2m31xfk7" path="res://script/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://ckuogpqc84nh4" path="res://Sprites/Characters/character_0001.png" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
-radius = 10.08
-height = 28.173912
+radius = 5.73913
+height = 11.47826
 
-[node name="player" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_qlg0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_3vyb7")]
+}
 
-[node name="Character0000" type="Sprite2D" parent="."]
-scale = Vector2(2.0833333, 1.9166666)
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "idel"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_3vyb7")]
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qhqgy")]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "move"
+length = 0.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_qhqgy"), ExtResource("1_3vyb7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"idel": SubResource("Animation_dqkch"),
+&"jump": SubResource("Animation_qhqgy"),
+&"move": SubResource("Animation_tuyoq")
+}
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_g2els")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(1.171, 1)
 texture = ExtResource("1_3vyb7")
 offset = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3.5527137e-15, -27)
+position = Vector2(-2.1175824e-22, -17)
 scale = Vector2(2.0833333, 1.9166666)
 shape = SubResource("CapsuleShape2D_g2els")
 
@@ -22,5 +97,8 @@ shape = SubResource("CapsuleShape2D_g2els")
 zoom = Vector2(3, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fjrip")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
