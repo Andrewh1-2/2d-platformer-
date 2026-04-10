@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqcffeb7ks68"]
+
+[ext_resource type="Script" uid="uid://ceo87e2xsh43r" path="res://menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://c804h5e01dcw" path="res://Sprites/Backgrounds/backgroundForest.png" id="1_yqeox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqeox"]
+font_size = 48
+font_color = Color(1, 0.675, 0.5, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.7490196)
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.90300006
+anchor_bottom = 1.58
+offset_left = 3.0
+offset_top = -277.0
+offset_right = 22.743896
+offset_bottom = 415.15997
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yqeox")
+expand_mode = 4
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -511.0
+offset_top = -116.5
+offset_right = 511.0
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "2D platformer Game
+"
+label_settings = SubResource("LabelSettings_yqeox")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 16.0
+offset_right = 70.5
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+
+[node name="quit Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = 100.0
+offset_right = 70.5
+offset_bottom = 166.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "quit 
+"
+
+[connection signal="pressed" from="play Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="quit Button2" to="." method="_on_quit_button_2_pressed"]
